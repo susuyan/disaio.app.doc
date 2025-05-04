@@ -6,8 +6,11 @@
     "build": "next build",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
-  },
+    "postinstall": "fumadocs-mdx",
+    "post": "bun run ./scripts/create-mdx.ts",
+    "format": "bun run ./scripts/format.ts",
+    "push": "bun run ./scripts/push.ts"
+    },
   "dependencies": {
     "next": "15.3.1",
     "react": "^19.1.0",
