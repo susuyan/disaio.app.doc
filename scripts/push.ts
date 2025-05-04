@@ -86,7 +86,15 @@ function main() {
     execSync("git add .", { stdio: "inherit" });
     const msg = getCommitMessage(changedFiles);
     execSync(`git commit -m "${msg}"`, { stdio: "inherit" });
-    execSync("git push", { stdio: "inherit" });
+    
+    // 修改推送命令，自动设置上游分支
+    try {
+      execSync("git push", { stdio: "inherit" });
+    } catch (e) {
+      console.log("尝试设置上游分支...");
+      execSync("git push --set-upstream origin main", { stdio: "inherit" });
+    }
+    
     console.log("已自动提交并推送到远程仓库。");
   } catch (e) {
     console.error("自动提交或推送失败：", e);
